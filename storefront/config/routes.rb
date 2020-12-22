@@ -80,6 +80,10 @@ Workarea::Storefront::Engine.routes.draw do
       resources :orders, only: [:index, :show]
     end
 
+    resource :deletion_request, only: [:show, :create] do
+      get ':id/cancel', to: 'deletion_requests#destroy', as: :cancel
+    end
+
     get '/robots.txt', to: 'pages#robots', defaults: { format: 'text' }, as: :robots_txt
     get '/health_check', to: 'application#health_check'
 
